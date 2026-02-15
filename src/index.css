@@ -1,8 +1,28 @@
+/*
+Source - https://stackoverflow.com/a/79449026
+Posted by Susmit Ullas
+Retrieved 2026-02-15, License - CC BY-SA 4.0
+*/
+
 @import "tailwindcss";
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+@layer base {
+    *,
+    *::before,
+    *::after {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    /* For Firefox. */
+    * {
+        scrollbar-width: none;
+    }
+
+    /* For WebKit (Chrome & Safari). */
+    ::-webkit-scrollbar {
+        display: none;
+    }
 }
