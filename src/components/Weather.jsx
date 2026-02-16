@@ -13,22 +13,24 @@ const Weather = () => {
     const inputRef = useRef();
     const [weatherData, setWeatherData] = useState(false);
 
-    const allIcons = {
-        "01d": clear_icon,
-        "01n": clear_icon,
-        "02d": cloud_icon,
-        "02n": cloud_icon,
-        "03d": cloud_icon,
-        "03n": cloud_icon,
-        "04d": drizzle_icon,
-        "04n": drizzle_icon,
-        "09d": rain_icon,
-        "09n": rain_icon,
-        "10d": rain_icon,
-        "10n": rain_icon,
-        "13d": snow_icon,
-        "13n": snow_icon
-    };
+    const weatherStyles = {
+        "01d": { icon: clear_icon, gradient: "bg-gradient-to-tr from-amber-200 to-orange-400" },
+        "01n": { icon: clear_icon, gradient: "bg-gradient-to-tr from-indigo-900 to-blue-950" },
+        "02d": { icon: cloud_icon, gradient: "bg-gradient-to-tr from-sky-300 to-slate-500" },
+        "02n": { icon: cloud_icon, gradient: "bg-gradient-to-tr from-slate-600 to-slate-800" },
+        "03d": { icon: cloud_icon, gradient: "bg-gradient-to-tr from-slate-400 to-slate-600" },
+        "03n": { icon: cloud_icon, gradient: "bg-gradient-to-tr from-slate-600 to-slate-900" },
+        "04d": { icon: drizzle_icon, gradient: "bg-gradient-to-tr from-slate-500 to-blue-700" },
+        "04n": { icon: drizzle_icon, gradient: "bg-gradient-to-tr from-slate-700 to-blue-900" },
+        "09d": { icon: rain_icon, gradient: "bg-gradient-to-tr from-slate-500 to-blue-800" },
+        "09n": { icon: rain_icon, gradient: "bg-gradient-to-tr from-slate-700 to-blue-950" },
+        "10d": { icon: rain_icon, gradient: "bg-gradient-to-tr from-slate-500 to-blue-800" },
+        "10n": { icon: rain_icon, gradient: "bg-gradient-to-tr from-slate-700 to-blue-950" },
+        "13d": { icon: snow_icon, gradient: "bg-gradient-to-tr from-sky-200 to-blue-300" },
+        "13n": { icon: snow_icon, gradient: "bg-gradient-to-tr from-sky-900 to-blue-950" },
+      };
+      
+      const defaultStyle = { icon: clear_icon, gradient: "bg-gradient-to-tr from-sky-400 to-blue-600" };
 
     const search = async (city) => {
         if (city === "") {
@@ -45,13 +47,15 @@ const Weather = () => {
                 return;
             }
             console.log(data);
-            const icon = allIcons[data.weather[0].icon] || clear_icon
+            const code = data.weather[0].icon;
+            const style = weatherStyles[code] || defaultStyle;
             setWeatherData({
                 temperature: Math.floor(data.main.temp),
                 humidity: data.main.humidity,
                 windSpeed: data.wind.speed,
                 city: data.name,
-                icon: icon
+                icon: style.icon,
+                gradient: style.gradient,
             });
 
         } catch (error) {
@@ -60,13 +64,13 @@ const Weather = () => {
     }
 
     useEffect(() => {
-        search();
+        search("Amarillo");
     }, [])
 
     return (
-        <div className='flex flex-col items-center rounded-lg p-10 bg-gradient-to-tr from-sky-400 to-blue-600 w-10/12 max-w-[500px] min-h-[481px]'>
+        <div className={`flex flex-col items-center rounded-lg p-10 w-10/12 max-w-[400px] min-h-[481px] ${weatherData?.gradient ?? defaultStyle.gradient}`}>
             <div className='flex items-center gap-3'>
-                <input className='border-2 h-12 rounded-lg pl-6 bg-amber-50 text-black placeholder:text-[#626262] outline-none'
+                <input className='w-10/12 border-2 h-12 rounded-lg pl-6 bg-amber-50 text-black placeholder:text-[#626262] outline-none'
                     type='text' placeholder='Search' ref={inputRef} />
                 <img className='border-2 rounded-full cursor-pointer p-3 bg-amber-50'
                     src={search_icon}
