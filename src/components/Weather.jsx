@@ -73,7 +73,7 @@ const Weather = () => {
             <div className='flex items-center gap-3'>
                 <input className='w-10/12 border-2 h-12 rounded-lg pl-6 bg-amber-50 text-black placeholder:text-[#626262] outline-none'
                     type='text' placeholder='Search' ref={inputRef} />
-                <img className='border-2 rounded-full cursor-pointer p-3 bg-amber-50'
+                <img className='border-2 border-black rounded-full cursor-pointer p-3 bg-amber-50'
                     src={search_icon}
                     alt=""
                     onClick={() => search(inputRef.current.value)} />
@@ -93,7 +93,7 @@ const Weather = () => {
                     <button
                         type="button"
                         onClick={() => setUnit('F')}
-                        className={` cursor-pointer px-2 py-0.5 rounded ${unit === 'F' ? 'bg-white/30 font-bold' : 'opacity-70 hover:opacity-90'}`}
+                        className={`cursor-pointer px-2 py-0.5 rounded ${unit === 'F' ? 'bg-white/30 font-bold' : 'opacity-70 hover:opacity-90'}`}
                     >
                         °F
                     </button>
