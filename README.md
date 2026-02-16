@@ -1,4 +1,4 @@
-git # Weather App
+# Weather App
 
 A simple weather app that shows current conditions for any city. Search by city name to see temperature, humidity, wind speed, and a weather icon. The card background updates with the weather (e.g. sunny, cloudy, rain, snow).
 
