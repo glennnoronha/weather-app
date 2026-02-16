@@ -12,6 +12,7 @@ const Weather = () => {
 
     const inputRef = useRef();
     const [weatherData, setWeatherData] = useState(false);
+    const [unit, setUnit] = useState('F');
 
     const weatherStyles = {
         "01d": { icon: clear_icon, gradient: "bg-gradient-to-tr from-amber-200 to-orange-400" },
@@ -80,7 +81,26 @@ const Weather = () => {
 
             {weatherData ? <>
                 <img src={weatherData.icon} alt="" className='w-36 my-5' />
-                <p className='text-6xl leading-none'>{weatherData.temperature}°F</p>
+                <div className="flex gap-2 items-center mb-1">
+                    <button
+                        type="button"
+                        onClick={() => setUnit('C')}
+                        className={`cursor-pointer px-2 py-0.5 rounded ${unit === 'C' ? 'bg-white/30 font-bold' : 'opacity-70 hover:opacity-90'}`}
+                    >
+                        °C
+                    </button>
+                    <span className="text-white/60">|</span>
+                    <button
+                        type="button"
+                        onClick={() => setUnit('F')}
+                        className={` cursor-pointer px-2 py-0.5 rounded ${unit === 'F' ? 'bg-white/30 font-bold' : 'opacity-70 hover:opacity-90'}`}
+                    >
+                        °F
+                    </button>
+                </div>
+                <p className='text-6xl leading-none'>
+                    {unit === 'F' ? weatherData.temperature : Math.round((weatherData.temperature - 32) * 5 / 9)}°{unit}
+                </p>
                 <p className='text-3xl'>{weatherData.city}</p>
                 <div className='w-full flex justify-between mt-8'>
                     <div className='flex gap-2'>
