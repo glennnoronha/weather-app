@@ -2,10 +2,12 @@
 
 A simple weather app that shows current conditions for any city. Search by city name to see temperature, humidity, wind speed, and a weather icon. The card background updates with the weather (e.g. sunny, cloudy, rain, snow).
 
+**Live demo:** [https://glennnoronha.github.io/weather-app/](https://glennnoronha.github.io/weather-app/)
+
 ## Features
 
 - **Search by city** — Enter a city name and get current weather (OpenWeatherMap API).
-- **Current conditions** — Temperature (°F), humidity, wind speed.
+- **Current conditions** — Temperature (toggle °C / °F), humidity, wind speed.
 - **Weather-based UI** — Background gradient and icon change by condition (clear, clouds, rain, drizzle, snow).
 - **Responsive layout** — Card stays readable on different screen sizes.
 
